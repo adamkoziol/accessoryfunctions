@@ -50,29 +50,26 @@ def printtime(string, start):
     import time
     print('\n\033[1m' + "[Elapsed Time: {:.2f} seconds] {}".format(time.time() - start, string) + '\033[0m')
 
-# Initialise globalcount
-globalcount = 0
 
+class Dotter(object):
 
-def globalcounter():
-    """Resets the globalcount to 0"""
-    global globalcount
-    globalcount = 0
+    def globalcounter(self):
+        """Resets the globalcount to 0"""
+        self.globalcount = 0
 
+    def dotter(self):
+        """Prints formatted time to stdout at the start of a line, as well as a "."
+        whenever the length of the line is equal or lesser than 80 "." long"""
+        import sys
+        if self.globalcount <= 80:
+            sys.stdout.write('.')
+            self.globalcount += 1
+        else:
+            sys.stdout.write('\n.')
+            self.globalcount = 1
 
-def dotter():
-    """Prints formatted time to stdout at the start of a line, as well as a "."
-    whenever the length of the line is equal or lesser than 80 "." long"""
-    # import time
-    import sys
-    # Use a global variable
-    global globalcount
-    if globalcount <= 80:
-        sys.stdout.write('.')
-        globalcount += 1
-    else:
-        sys.stdout.write('\n.')
-        globalcount = 1
+    def __init__(self):
+        self.globalcount = 0
 
 
 def execute(command, outfile=""):
