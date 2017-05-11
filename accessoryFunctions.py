@@ -42,13 +42,15 @@ def make_dict():
     return defaultdict(make_dict)
 
 
-def printtime(string, start):
-    """Prints a string in bold with the elapsed time
+def printtime(string, start, colour='\033[0m'):
+    """Prints a string in bold (optionally with colour) with the elapsed time
     :param string: a string to be printed in bold
     :param start: integer of the starting time
+    :param colour: ANSI escape sequence. Default is ENDC (end colour?)
     """
     import time
-    print('\n\033[1m' + "[Elapsed Time: {:.2f} seconds] {}".format(time.time() - start, string) + '\033[0m')
+    print('\n{}'.format(colour) + '\033[1m' + "[Elapsed Time: {:.2f} seconds] {}"
+          .format(time.time() - start, string) + '\033[0m')
 
 
 class Dotter(object):
