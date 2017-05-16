@@ -173,7 +173,7 @@ def relativesymlink(src_file, dest_file):
     """
     # Perform relative symlinking
     try:
-        print os.path.relpath(src_file), os.path.relpath(dest_file)
+        print(os.path.relpath(src_file), os.path.relpath(dest_file))
         os.symlink(
             # Find the relative path for the source file and the destination file
             os.path.relpath(src_file),
@@ -250,7 +250,7 @@ class MetadataObject(object):
                     try:
                         metadata[attr] = self.datastore[attr].datastore
                     except AttributeError:
-                        print attr
+                        print(attr)
         return metadata
 
 
