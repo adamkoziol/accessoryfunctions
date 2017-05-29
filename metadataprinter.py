@@ -13,14 +13,17 @@ class MetadataPrinter(object):
                 jsonfile = '{}/{}_metadata.json'.format(sample.general.outputdirectory, sample.name)
                 try:
                     # Open the metadata file to write
-                    with open(jsonfile, 'wb') as metadatafile:
+                    with open(jsonfile, 'w') as metadatafile:
                         # Write the json dump of the object dump to the metadata file
                         json.dump(sample.dump(), metadatafile, sort_keys=True, indent=4, separators=(',', ': '))
                 except IOError:
-                    # print json.dumps(sample.datastore, sort_keys=True, indent=4, separators=(',', ': '))
-                    print sample.datastore
+                    # Print useful information in case of an error
+                    print(sample.name, sample.datastore)
                     raise
 
     def __init__(self, inputobject):
-        self.metadata = inputobject.runmetadata.samples
+        try:
+            self.metadata = inputobject.runmetadata.samples
+        except AttributeError:
+            self.metadata = inputobject.runmetadata
         self.printmetadata()
