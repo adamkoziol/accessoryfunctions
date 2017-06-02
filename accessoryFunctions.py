@@ -235,6 +235,12 @@ class MetadataObject(object):
         else:
             self.datastore[key] = value
 
+    def __getstate__(self):
+        return self.__dict__
+
+    def __setstate__(self, d):
+        self.__dict__.update(d)
+
     def __getitem__(self, item):
         return self.datastore[item]
 
